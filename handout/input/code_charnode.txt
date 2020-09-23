@@ -1,0 +1,49 @@
+public class CharRecord {
+    private char keyword;
+    private Integer count;
+    private CharRecord left;
+    private CharRecord right;
+
+    public void setLeft(CharRecord left) {
+        this.left = left;
+    }
+
+    public void setRight(CharRecord right) {
+        this.right = right;
+    }
+
+    public CharRecord getLeft() {
+        return left;
+    }
+
+    public CharRecord getRight() {
+        return right;
+    }
+
+    public void setKeyword(char keyword) {
+        this.keyword = keyword;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public char getKeyword() {
+        return keyword;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void addCount(Integer i) {
+        this.count = this.count + i;
+    }
+
+    public CharRecord(char keyword, Integer count) {
+        this.keyword = keyword;
+        this.count = count;
+    }
+
+    CharRecord() {}
+}

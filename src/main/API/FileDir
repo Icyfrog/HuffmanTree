@@ -1,0 +1,65 @@
+import java.io.File;
+
+/**
+ * Created by elijahliu on 2017/2/11.
+ */
+public class HelloFolder {
+  public static void main(String[] args) {
+    File folder = new File("my new folder");
+    if (folder.mkdir()) {//创建文件夹 判断是否成功
+      System.out.println("文件夹创建完成");
+      File newfolder = new File("myn new foleder - new");
+      folder.renameTo(newfolder);//这里重命名了文件夹 文件夹的重命名是可以单独更改一级的文件夹名的 而这一级下面的文件夹不变 保存目录结构
+      if (folder.delete()) {
+        System.out.print("done");//这里的删除只能删除空文件夹，如果文件夹中有东西，那么则不能删除，不问三七二十一直接删除一个非空文件夹是非常不负责任的
+      } else {
+        System.out.println("fail");
+      }
+
+    }else{
+      if (folder.exists()) {
+        System.out.println("文件夹已经存在不用创建");
+      }else{
+        System.out.println("文件夹创建失败");
+      }
+    }
+    File folders = new File("my new folder/one/two/three/main");
+    folders.mkdirs();//在java中用mkdir只能创建一个，mkdirs可以创建多级目录
+
+  }
+}
+
+package com.file;
+
+import java.io.File;
+
+/**
+ * Created by elijahliu on 2017/2/11.
+ */
+public class SetFileProperty {
+  public static void main(String[] args){
+    File file = new File("test.file");
+    if (file.exists()){
+      file.setWritable(true);//可写
+      file.setReadable(true);//可读
+      file.setReadOnly();//只读
+    }
+  }
+}
+
+  public void printFiles(File dir,int tab) {//tab为不同目录结构的缩进量
+    if (dir.isDirectory()) {
+      File next[] = dir.listFiles();//判断如果是目录 则返回目录所有的文件名数组用于遍历文件夹
+      for (int i = 0;i<next.length;i++) {//层次缩进输出
+        System.out.print("---");
+      }
+      for(int i = 0;i<next.length;i++) {//这里用了递归获取目录结构
+        System.out.println(next[i].getName());
+        if (next[i].isFile()) {
+          printFiles(next[i],++tab);
+
+        }
+      }
+    }
+  }
+
